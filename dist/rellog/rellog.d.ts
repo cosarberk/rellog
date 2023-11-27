@@ -4,8 +4,9 @@ export declare class RelLog {
     FilePath: string;
     constructor(ConsoleMode?: boolean, FileMode?: boolean, FilePath?: string);
     CreateLogProfile(): void;
-    LOG(type?: string, title?: string, context?: string, consoleMode?: boolean, fileMode?: boolean, filePath?: string): void;
+    LOG(type?: string, title?: string, context?: string, consoleMode?: boolean, fileMode?: boolean, filePath?: string): Promise<void>;
     private WriteFile;
     private AppendFile;
     private ReadFile;
+    private CreateFolder;
 }

@@ -7,7 +7,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "sudo rm -r dist && tsc",
-    "dev": "nodemon ./build/index.js",
+    "dev": "nodemon ./dist/index.js",
     "start:dev": "tsc && npm run dev",
     "test:npm": "npm run build && sudo npm unlink rellog && sudo npm link"
   },
