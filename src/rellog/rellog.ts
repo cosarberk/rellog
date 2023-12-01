@@ -212,6 +212,32 @@ export class RelLog {
      * | **FilePath**        | string                             | `./logs`         |  Log file path
      * 
      * ---
+     * 
+     * ### Examples:
+     *
+     * ```ts
+     * const {RelLog,LOG_COLORS} = require("rellog")
+     * 
+     * RL.LOG("this is a info log", "i")
+     * RL.LOG("this is a error log  with log title [BERK]", "E", "BERK")
+     * 
+     * 
+     * RL.LOG("Log displayed only in the console.", "w", "[BERK]", { FileMode: false})
+     * RL.LOG("warning log displayed only in the console and Colored log with title", "w", "[BERK]", { FileMode: false, Colors: { titleColor: LOG_COLORS.bg_bold_green } })
+     * RL.LOG("Active debug log in HighLigthMode.", "d", "[BERK]", { ConsoleMode: true, HighLigthMode: true, Colors: { titleColor: LOG_COLORS.bg_bold_green, dateColor: LOG_COLORS.blue } })
+     * 
+     * RL.LOG("log with custom file name", "w", "[BERK]", {},"custom.log")
+     * RL.LOG("log with default file name and file path", "w", "[BERK]", {},"custom.log",RL.FilePath)
+     * RL.LOG("log with custom file name and file path", "w", "[BERK]", {},"custom.log","./logs")
+     * 
+     * // Write log data for the `pre mode` within `` symbols
+     * RL.LOG(`bla bla 
+     * bla blablablabla 
+     * bla 
+     * blablablabla`, "E", "BERK")  
+     *
+     *
+     * ```
      */
     LOG(
         /**
@@ -368,6 +394,56 @@ export class RelLog {
 
     //#region /// LOGTABLE \\\
 
+     /**  
+     * ### LOGTABLE()
+     * 
+     * It performs logging to the desired or main file while simultaneously printing log output to the console if requested.
+     * 
+     * ### Options
+     * 
+     * | OPTION              | TYPE                      | DEFAULT          | DESCRIPTION
+     * | :-                  | :-                        | :-               | :-
+     * | **data**            | array[any]                | `[]`             |  Table contexts
+     * | **head**            | array[string]             | `[]`             |  Table headers
+     * 
+     * ---
+     * 
+     * #### NOTE : If the `LOGTABLE` has an empty `head`, it will create a regular table. The `head` argument enables the table to be horizontal, leading to different expectations for the content of the `data` argument
+     * 
+     * ### Examples:
+     *
+     * ```ts
+     * // An example of a regular table with the `head` argument:
+     * // Currently, the `normaldata` argument accepts an array of objects
+     * 
+     *  const normaldata = [
+     *    { 'Some key': 'Some value' },
+     *    { 'Another key': 'Another value' }
+     *  ];
+     *
+     *   RL.LOGTABLE(normaldata)
+     *
+     * ```
+     * ---
+     * 
+     * \
+     * \
+     * ```ts
+     * // An example of a regular table without the `head` argument:
+     * // Currently, the `headerdata` argument accepts an array of arrays
+     * 
+     * const headerdata = [
+     *   ['First value', 'Second value'],
+     *   ['First value', 'Second value']
+     * ];
+     * // and headers 
+     * const headers = ['TH 1 label', 'TH 2 label']
+     * 
+     *   RL.LOGTABLE(headerdata, headers)
+     *
+     * ```
+     * 
+     */
     LOGTABLE(
         data: any[],
         head?: string[]
@@ -451,39 +527,38 @@ export class RelLog {
 
 
 
-const RL = new RelLog()
+// const RL = new RelLog()
 
 
-// RL.LOG("bu bir info", "i")
-// RL.LOG("bu bir hata", "E", "BERK")
+// RL.LOG("this is a info log", "i")
+// RL.LOG("this is a error log  with log title [BERK]", "E", "BERK")
 
 
-// RL.LOG("bu bir relnode warning", "w", "[BERK]", { FileMode: false})
-// RL.LOG("bu bir relnode warning", "w", "[BERK]", { FileMode: false, Colors: { titleColor: LOG_COLORS.bg_bold_green } })
-// RL.LOG("bu bir relnode warning", "d", "[BERK]", { ConsoleMode: true, HighLigthMode: true, Colors: { titleColor: LOG_COLORS.bg_bold_green, dateColor: LOG_COLORS.blue } })
+// RL.LOG("Log displayed only in the console.", "w", "[BERK]", { FileMode: false})
+// RL.LOG("warning log displayed only in the console and Colored log with title", "w", "[BERK]", { FileMode: false, Colors: { titleColor: LOG_COLORS.bg_bold_green } })
+// RL.LOG("Active debug log in HighLigthMode.", "d", "[BERK]", { ConsoleMode: true, HighLigthMode: true, Colors: { titleColor: LOG_COLORS.bg_bold_green, dateColor: LOG_COLORS.blue } })
 
-// RL.LOG("bu bir custom filename", "w", "[BERK]", {},"custom.log")
-// RL.LOG("bu bir relnode warning", "w", "[BERK]", {},"custom.log",RL.FilePath)
-// RL.LOG("bu bir relnode warning", "w", "[BERK]", {},"custom.log","./logs")
+// RL.LOG("log with custom file name", "w", "[BERK]", {},"custom.log")
+// RL.LOG("log with default file name and file path", "w", "[BERK]", {},"custom.log",RL.FilePath)
+// RL.LOG("log with custom file name and file path", "w", "[BERK]", {},"custom.log","./logs")
 
-// RL.LOG("bu bir hata şşşşşş ğğğğ", "E", "BERK") 
+// // Write log data for the `pre mode` within `` symbols
+// RL.LOG(`bla bla 
+// bla blablablabla 
+// bla 
+// blablablabla`, "E", "BERK")  
 
-// RL.LOG(`denem 
-// ewf efwweewfewfwefewfew 
-// few 
-// wefwfwefewfewe`, "E", "BERK") // pre mode `` 
-
-const headers = ['TH 1 label', 'TH 2 label']
-const headerdata = [
-    [LOG_COLORS.blue + 'First value', 'Second value'],
-    [LOG_COLORS.blue + 'First value', 'Second value']
-]
-const normaldata = [
-    { 'Some key': 'Some value' },
-    { 'Another key': 'Another value' }
-]
-RL.LOGTABLE(normaldata)
-RL.LOGTABLE(headerdata, headers)
+// const headers = ['TH 1 label', 'TH 2 label']
+// const headerdata = [
+//     [LOG_COLORS.blue + 'First value', 'Second value'],
+//     [LOG_COLORS.blue + 'First value', 'Second value']
+// ]
+// const normaldata = [
+//     { 'Some key': 'Some value' },
+//     { 'Another key': 'Another value' }
+// ]
+// RL.LOGTABLE(normaldata)
+// RL.LOGTABLE(headerdata, headers)
 
 
 
