@@ -114,14 +114,14 @@ Ansi color codes.
  
  ---
  
- ### T_Options Type Options
+### T_Options Type Options
  
- | OPTION           | TYPE                | DEFAULT         | DESCRIPTION
- | :-                 | :-                  | :-              | :-
- | **ConsoleMode**    | boolean             | `true`          | Whether the main log should be displayed on the console or not
- | **FileMode**       | boolean             | `true`          | Whether the main log should be written to the main file or not
- | **HighLigthMode**  | boolean             | `false`         | Whether color codes should be included when writing the main log to the file
- | **Colors**         | object{T_Colors}    | `DefaultColors` | Color values for the main log
+| OPTION           | TYPE                | DEFAULT         | DESCRIPTION
+| :-                 | :-                  | :-              | :-
+| **ConsoleMode**    | boolean             | `true`          | Whether the main log should be displayed on the console or not
+| **FileMode**       | boolean             | `true`          | Whether the main log should be written to the main file or not
+| **HighLigthMode**  | boolean             | `false`         | Whether color codes should be included when writing the main log to the file
+| **Colors**         | object{T_Colors}    | `DefaultColors` | Color values for the main log
  
  #### NOTE: When HighLightMode is true, the color of the logged messages is included in the log file. This may reduce readability for normal readers, but it ensures that the log output is well-organized and colorful when retrieved with console commands like 'cat'.
 
